@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DATA="data/penghuni.csv"
-LOG="/home/aliya/modul_1/soal_3//home/aliya/modul_1/soal_3/log/tagihan"
+LOG="/home/aliya/modul_1/soal_3//home/aliya/modul_1/soal_3/log/tagihan.log"
 REKAP="rekap/laporan_bulanan.txt"
 SAMPAH="sampah/history_hapus.csv"
 
