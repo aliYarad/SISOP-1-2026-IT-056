@@ -16,7 +16,7 @@ Pada soal 1 diperintahkan untuk menyusun laporan lengkap mengenai penumpang kere
 ```bash
 FILE="passenger.csv"
 ```
-- Menu interaktif yang memberikan kebebasan kepada user untuk memilih perintah apa yang akan dijalankan
+- Menu yang memberikan kebebasan kepada user untuk memilih perintah apa yang akan dijalankan
 ```bash
 echo "Pilih opsi soal:"
 echo "a. Jumlah seluruh penumpang KANJ"
@@ -77,11 +77,56 @@ OUTPUT="titik-penting.txt"
 > "$OUTPUT"
 ```
 Hasil parsing akan dimasukkan ke dalam file `titik-penting.txt` yang menampilkan data secara berurutan sesuai dengan id lokasi
-- bn
+- Ekstrak nilai id, site_names, dan lattitude lalu simpan ke variabel
 ```bash
 id=$(awk -F ':' '/"id"/ { gsub(/[",]/,"",$2); print $2 }' $file)
 site_names=$(awk -F ': ' '/"site_name"/ { gsub(/[",]/,"",$2); print $2 }' $file)
 latitudes=$(awk -F ': ' '/"latitude"/ { gsub(/,/,"",$2); print $2 }' $file)
 ```
+- Hasil ekstrak disimpan ke dalam array
 ```bash
+id_arr=($id)
+names_arr=()
+
+while IFS= read -r line; do
+  names_arr+=("$line")
+done <<< "$site_names"
+
+lat_arr=($latitudes)
+long_arr=($longitudes)
 ```
+- Loop untuk mencetak hasil data ke file `titik-penting.txt`
+```bash
+for i in 0 1 2 3; do
+  echo "${id_arr[$i]}, ${names_arr[$i]}, ${lat_arr[$i]}, ${long_arr[$i]}" >> $OUTPUT
+done
+```
+
+Setelah data koordinat sudah dirapikan, menyelesaikan rumus titik tengah untuk mendapatkan koordinat pusat lokasi pusaka
+- Mengambil lattitude dan longitude dari file `titik-penting.txt`
+```bash
+input="titik-penting.txt"
+output="posisipusaka.txt"
+
+lat1=$(sed -n '1p' "$input" | awk -F ',' '{ print $3 }')
+long1=$(sed -n '1p' "$input" | awk -F ',' '{ print $4 }')
+lat2=$(sed -n '3p' "$input" | awk -F ',' '{ print $3 }')
+long2=$(sed -n '3p' "$input" | awk -F ',' '{ print $4 }')
+```
+- Menghitung titik tengah diagonal menggunakan rumus titik tengah persegi
+```bash
+lat_pusaka=$(echo "scale=6; ($lat1 + $lat2) / 2" | bc)
+long_pusaka=$(echo "scale=6; ($long1 + $long2) / 2" | bc)
+```
+- Menampilkan hasil perhitungan dan menyimpannya ke dalam file `posisipusaka.txt`
+```bash
+echo "Koordinat pusat:"
+echo "($lat_pusaka, $long_pusaka)" > "$output"
+cat "$output"
+```
+
+### _Soal 3_
+**Deskripsi Soal**
+
+Pada soal 3 diperintahkan untuk menciptakan program manajemen kost berbasis CLI interaktif
+- Menu interaktif yang akan terus looping
