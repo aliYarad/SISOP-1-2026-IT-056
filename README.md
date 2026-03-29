@@ -404,7 +404,7 @@ END {
 }
 ```
 Karena `awk -f` hanya bisa menjalankan script awk dan tidak bisa menggunakan sintaks bash, maka saya merevisi keseluruhan script.  
-Di awk, argumen setelah nama file bisa diakses lewat `ARGV` dengan `ARGV[2]` mengambil argumen ketiga dan dan delete `ARGV[2]` mencegah awk untuk membuka argumen sebagai file
+Di awk, argumen setelah nama file bisa diakses lewat `ARGV` dengan `ARGV[2]` mengambil argumen ketiga dan delete `ARGV[2]` mencegah awk untuk membuka argumen sebagai file
 
 #### Bagian 2
 **Soal 1 Opsi d (Rata-Rata Usia Penumpang)**
