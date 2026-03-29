@@ -363,8 +363,9 @@ fi
 ```
 Saat cron menjalankan script `--check-tagihan`, program mencari penghuni yang berstatus "Menunggak", jika ditemukan, program akan mencatatnya ke file `tagihan.log`
 
+---
 ### Revisi
-#### Bagian 1
+#### - Bagian 1
 **Soal 1**
 
 Pada soal nomor 1, seharusnya script dijalankan melalui awk dengan format `awk -f KANJ.sh passenger.csv a/b/c/d/e`, tetapi pada script yang saya buat, saya membuatnya melalui menu-menu yang bisa dipilih user. Berikut revisinya:
@@ -406,7 +407,7 @@ END {
 Karena `awk -f` hanya bisa menjalankan script awk dan tidak bisa menggunakan sintaks bash, maka saya merevisi keseluruhan script.  
 Di awk, argumen setelah nama file bisa diakses lewat `ARGV` dengan `ARGV[2]` mengambil argumen ketiga dan delete `ARGV[2]` mencegah awk untuk membuka argumen sebagai file
 
-#### Bagian 2
+#### - Bagian 2
 **Soal 1 Opsi d (Rata-Rata Usia Penumpang)**
 
 Pada soal nomor 1, seharusnya rata-rata setelah dilakukan operasi perhitungan menghasilkan bilangan bulat (integer) dengan pembulatan ke bawah, tetapi pada script, saya melakukan pembulatan ke atas
@@ -418,7 +419,7 @@ Hal yang diubah yaitu dari `%.0f` menjadi `%d` serta menggunakan fungsi `int()` 
 Output:
 <img width="1457" height="43" alt="image" src="https://github.com/user-attachments/assets/f2344153-8e8a-42fa-91ba-e3f001c5e165" />
 
-#### Bagian 3
+#### - Bagian 3
 **Soal 3**
 
 Pada soal nomor 3, kesalahan saya yaitu setiap saat program dijalankan dan folder-folder yang dibutuhkan belum ada, program saya tidak membuat folder-folder tersebut
@@ -429,7 +430,7 @@ mkdir -p data log rekap sampah
 ```
 Saya menambahkan `mkdir -p` agar setiap program dijalankan, program membuat semua folder sekaligus
 
-#### Bagian 4
+#### - Bagian 4
 **Soal 3**
 
 Pada soal nomor 3, terdapat kesalahan saat inisiasi variabel `LOG` yaitu saya menulis path yang salah. Sebelumnya, path `LOG` : `LOG="/home/aliya/modul_1/soal_3//home/aliya/modul_1/soal_3/log/tagihan.log"`, saya ubah menjadi:
@@ -437,7 +438,7 @@ Pada soal nomor 3, terdapat kesalahan saat inisiasi variabel `LOG` yaitu saya me
 LOG="log/tagihan.log"
 ```
 
-#### Bagian 5
+#### - Bagian 5
 **Soal 3**
 
 Pada soal nomor 3, terdapat kesalahan saat menjalankan `./kost_slebew.sh --check-tagihan` 
@@ -455,7 +456,7 @@ fi
 ```
 Revisi yang saya lakukan yaitu menambahkan `cd "$(dirname "$0")"` agar path `$DATA` dan `$LOG` dapat ditemukan dari manapun script dijalankan sehingga cron berjalan pada direktori yang sama. Selain itu, saya menambahkan `else` agar log tetap tertulis meskipun tidak ada penghuni yang menunggak
 
-#### Bagian 6
+#### - Bagian 6
 **Soal 3** 
 
 Pada soal nomor 3, diperintahkan untuk validasi agar nomor kamar tidak bentrok, tapi saat program dijalankan, saya masih menemukan ada nomor kamar yang bentrok
