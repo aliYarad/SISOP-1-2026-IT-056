@@ -446,7 +446,9 @@ if [ "$1" == "--check-tagihan" ]; then
   cd "$(dirname "$0")"
   menunggak=$(awk -F ',' 'NR>1 && $6=="Menunggak" { print $2 }' $DATA)
   if [ -n "$menunggak" ]; then
-    echo "[$(date)] Pengingat: Penghuni menunggak: $menunggak" >> $LOG
+    echo "[$(date)] Pengingat: Penghuni menunggak: $menunggak" | tee -a $LOG
+  else
+    echo "[$(date)] Tidak ada penghuni menunggak." | tee -a $LOG
   fi
   exit 0
 fi
