@@ -414,7 +414,7 @@ Pada soal nomor 1, seharusnya rata-rata setelah dilakukan operasi perhitungan me
 else if (opsi == "d")
     printf "Rata-rata usia penumpang adalah %d tahun\n", int(sum/(NR-1))
 ```
-Hal yang diubah yaitu dari `%.0f` menjadi `%d` serta menggunakan fungsi `int()` pada perhitungan rata-rata karena fungsi ini membulatkan angka desimal ke bawah
+Hal yang diubah yaitu dari `%.0f` menjadi `%d` serta menggunakan fungsi `int()` pada perhitungan rata-rata karena fungsi ini membulatkan angka desimal ke bawah  
 Output:
 <img width="1457" height="43" alt="image" src="https://github.com/user-attachments/assets/f2344153-8e8a-42fa-91ba-e3f001c5e165" />
 
